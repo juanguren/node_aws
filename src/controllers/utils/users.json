@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Hugo",
+        "age": 23,
+        "salary": 78000000,
+        "hobbies": [
+            "Read",
+            "Write",
+            "Work Out",
+            "Travel",
+            "Sing",
+            "Code"
+        ]
+    },
+    {
+        "id": "FBSbSfsenOby1GipWcmz6",
+        "name": "Natalia",
+        "age": 28,
+        "salary": 95000000,
+        "active": false,
+        "hobbies": [
+          "Read",
+          "Write",
+          "Work Out",
+          "Travel",
+          "Design",
+          "Teach"
+        ]
+    }
+]

@@ -1,5 +1,7 @@
 const { nanoid } = require('nanoid');
 const { list } = require('./utils/utils');
+const users = require('./utils/users.json');
+const fs = require('fs');
 const axios = require('axios');
 
 const createUser = (req, res) => {
@@ -29,12 +31,18 @@ const createUser = (req, res) => {
 const activateUser = async (req, res) => {
   const { id: userId } = req.params;
   try {
-    const userData = await axios.get('http://localhost:5000/tests');
-    const userResponse = await userData.data;
-    userResponse.list.map((user) => {
-      if (user.id == userId) user.active = true;
-    });
-    return res.status(200).json(userResponse.list);
+    const userIndex = users.findIndex((user) => user.id == userId);
+    if (userIndex == -1) throw 'User not found';
+
+    users[userIndex].active = true;
+    fs.writeFile(
+      './utils/users.json',
+      JSON.stringify(users),
+      (error) => {
+        console.log(true);
+      },
+    );
+    return res.status(200).json(users);
   } catch (error) {
     return res.status(404 || error.status).json({ error });
   }
