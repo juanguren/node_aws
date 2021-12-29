@@ -3,6 +3,7 @@
         "name": "Hugo",
         "age": 23,
         "salary": 78000000,
+        "active": true,
         "hobbies": [
             "Read",
             "Write",

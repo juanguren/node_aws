@@ -47,7 +47,24 @@ const activateUser = async (req, res) => {
   }
 };
 
-const retrieveUser = (req, res) => {};
+const retrieveUser = (req, res) => {
+  const { state: userState } = req.params;
+  try {
+    if (userState == 'active' || userState == 'inactive') {
+      const stateOptions = {
+        active: true,
+        inactive: false,
+      };
+      const foundUser = users.filter(
+        (user) => user.active == stateOptions[userState],
+      );
+      return res.status(200).json({ user: foundUser });
+    }
+    throw 'Incorrect search param';
+  } catch (error) {
+    res.status(404).json({ error });
+  }
+};
 
 const retrieveUsers = (req, res) => res.status(200).json({ list });
 
@@ -60,13 +77,14 @@ const deleteUser = (req, res) => {
   } catch (error) {
     return res.status(404).json('Error');
   }
-}
+};
 
 module.exports = {
   createUser,
   retrieveUser,
   retrieveUsers,
   activateUser,
+  deleteUser,
 };
 
 /**
