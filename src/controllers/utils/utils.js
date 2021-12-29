@@ -1,3 +1,5 @@
+const getUserIndex = (users, id) => users.findIndex((user) => user.id == id);
+
 const list = [
   {
     id: 'ap-zRmatkspUfAUvDFW6Q',
@@ -32,4 +34,4 @@ const list = [
   },
 ];
 
-module.exports = { list };
+module.exports = { list, getUserIndex };

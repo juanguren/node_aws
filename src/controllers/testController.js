@@ -1,8 +1,7 @@
 const { nanoid } = require('nanoid');
-const { list } = require('./utils/utils');
+const { list, getUserIndex } = require('./utils/utils');
 const users = require('./utils/users.json');
 const fs = require('fs');
-const axios = require('axios');
 
 const createUser = (req, res) => {
   const { name, age, salary, hobbies } = req.body;
@@ -31,7 +30,7 @@ const createUser = (req, res) => {
 const activateUser = async (req, res) => {
   const { id: userId } = req.params;
   try {
-    const userIndex = users.findIndex((user) => user.id == userId);
+    const userIndex = getUserIndex(users, userId);
     if (userIndex == -1) throw 'User not found';
 
     users[userIndex].active = true;
@@ -51,6 +50,17 @@ const activateUser = async (req, res) => {
 const retrieveUser = (req, res) => {};
 
 const retrieveUsers = (req, res) => res.status(200).json({ list });
+
+const deleteUser = (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = getUserIndex(users, id);
+    users.slice(user);
+  } catch (error) {
+    return res.status(404).json('Error');
+  }
+}
 
 module.exports = {
   createUser,
