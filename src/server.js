@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
 app.use('/tests', testRouter);
 app.use('/weather', weatherRouter);
 
+app.use((req, res) => {
+  res.status(404).json({ error: 'Check your param route' });
+});
+
 app.listen(PORT, () => {
   console.log('Listening in port ' + PORT);
 });
