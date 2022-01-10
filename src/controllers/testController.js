@@ -8,12 +8,11 @@ const createUserInCloud = async (req, res) => {
   try {
     const body = req.body;
     const response = await fetchArrayAPI('post', '', body);
-    console.log(response);
     res.send(response);
   } catch (error) {
     res.json(error);
   }
-}
+};
 
 const createUser = (req, res) => {
   const { name, age, salary, hobbies } = req.body;
@@ -97,7 +96,7 @@ module.exports = {
   retrieveUsers,
   activateUser,
   deleteUser,
-  createUserInCloud
+  createUserInCloud,
 };
 
 /**
