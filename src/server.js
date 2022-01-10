@@ -1,7 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const testRouter = require('./routes/various');
-const weatherRouter = require('./routes/weather');
 
 const PORT = 5000 || 3000;
 const app = express();
@@ -14,7 +13,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/tests', testRouter);
-app.use('/weather', weatherRouter);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Check your param route' });
