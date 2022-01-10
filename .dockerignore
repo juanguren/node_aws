@@ -1,0 +1,2 @@
+# Preventing certain files to be copied into the container (COPY . . step in Dockerfile)
+node_modules
