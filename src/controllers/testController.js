@@ -58,20 +58,11 @@ const activateUser = async (req, res) => {
   }
 };
 
-const retrieveUser = (req, res) => {
-  const { state: userState } = req.params;
+const retrieveUser = async (req, res) => {
+  const { key: userKey } = req.params;
   try {
-    if (userState == 'active' || userState == 'inactive') {
-      const stateOptions = {
-        active: true,
-        inactive: false,
-      };
-      const foundUser = users.filter(
-        (user) => user.active == stateOptions[userState],
-      );
-      return res.status(200).json({ user: foundUser });
-    }
-    throw 'Incorrect search param';
+    const response = await fetchArrayAPI('get', userKey);
+    return res.status(200).json({ user: response.data });
   } catch (error) {
     res.status(404).json({ error });
   }

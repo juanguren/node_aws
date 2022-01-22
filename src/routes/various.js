@@ -5,13 +5,13 @@ const {
   retrieveUser,
   activateUser,
   deleteUser,
-  createUserInCloud
+  createUserInCloud,
 } = require('../controllers/testController');
 
 const testRouter = Router();
 
 testRouter.get('/', retrieveUsers);
-testRouter.get('/user/:state', retrieveUser);
+testRouter.get('/user/:key', retrieveUser);
 testRouter.post('/activate/:id', activateUser);
 testRouter.post('/', createUser);
 testRouter.post('/cloud', createUserInCloud);
