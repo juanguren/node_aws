@@ -61,8 +61,10 @@ const activateUser = async (req, res) => {
 const retrieveUser = async (req, res) => {
   const { key: userKey } = req.params;
   try {
-    const response = await fetchArrayAPI('get', userKey);
-    return res.status(200).json({ user: response.data });
+    const data = await fetchArrayAPI('get', userKey);
+    if (data.data) return res.status(200).json({ user: data.data });
+
+    throw data.response.data.message;
   } catch (error) {
     res.status(404).json({ error });
   }
@@ -81,6 +83,14 @@ const deleteUser = (req, res) => {
   }
 };
 
+const deleteUserInCloud = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await fetchArrayAPI('delete', id);
+    res.send(response);
+  } catch (error) {}
+};
+
 module.exports = {
   createUser,
   retrieveUser,
@@ -88,6 +98,7 @@ module.exports = {
   activateUser,
   deleteUser,
   createUserInCloud,
+  deleteUserInCloud,
 };
 
 /**
