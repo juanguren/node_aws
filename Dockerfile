@@ -1,7 +1,7 @@
 # Telling Docker the version of node we want to build the image from
 FROM node:14 
 
-# Working Directory. Holds the application code inside the image
+# Working Directory. Holds the application code inside of the image
 WORKDIR /app
 
 # optional: set up env variables (differentiate between envs, sharing urls, etc...)
