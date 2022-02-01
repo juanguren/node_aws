@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "JFA",
   "license": "ISC",
@@ -17,7 +17,9 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
+    "jest": "^27.4.7",
     "morgan": "^1.10.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "supertest": "^6.2.2"
   }
 }
