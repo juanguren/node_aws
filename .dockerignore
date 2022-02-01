@@ -1,2 +1,3 @@
 # Preventing certain files to be copied into the container (COPY . . step in Dockerfile)
+# because modules are sometimes optimized for operating system. And final container will probably have a Linux OS
 node_modules
